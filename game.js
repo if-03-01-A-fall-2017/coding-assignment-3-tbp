@@ -1,8 +1,9 @@
 var canvas = document.getElementById("canvas");
 var c = canvas.getContext("2d");
+var animationID;
 let score1 = 0;
 let score2 = 0;
-const maxPlayerSpeed = 3;
+const maxPlayerSpeed = 3.5;
 const ballSpeed = 5;
 
 var wDown = false;
@@ -20,8 +21,11 @@ var ball = new Player(350, 250,10,0,0);
 start();
 
 function start(){
-  renderPlayers();
-  drawField();
+  player1.x = 100;
+  player1.y = 250;
+  player2.x = 600;
+  player2.y = 250;
+  ball = new Player(350, 250,10,0,0);
   play();
 }
 function Player(x,y,z,b,c)
@@ -109,10 +113,18 @@ function checkBallBoundaries()
   if (ball.y + ball.yacc < 15) {
     ball.yacc *= -1;
   }
-  if (ball.x + ball.xacc > 689) {
+  if (((ball.y + ball.yacc) > 170 && (ball.y - ball.yacc) < 340) && ball.x + ball.xacc >= 689) {
+    score1++;
+    start();
+  }
+  else if (ball.x + ball.xacc > 689) {
     ball.xacc *= -1;
   }
-  if (ball.x + ball.xacc < 15) {
+  if (((ball.y + ball.yacc) > 170 && (ball.y - ball.yacc) < 340) && ball.x + ball.xacc <= 15) {
+    score2++;
+    start();
+  }
+  else if (ball.x + ball.xacc < 15) {
     ball.xacc *= -1;
   }
 }
@@ -196,7 +208,6 @@ function moveBall()
 }
 function checkBall()
 {
-
     var p1_ball_distance = getDistance(player1.x,player1.y,ball.x,ball.y) - player1.size - ball.size;
 	   if(p1_ball_distance < 0){
 		  collide(ball,player1);
@@ -210,10 +221,10 @@ function checkBall()
   function collide(cir1,cir2){
 	 var dx = (cir1.x - cir2.x) / (cir1.size);
 	 var dy = (cir1.y - cir2.y) / (cir1.size);
-	 cir2.xacc -= dx;
-	 cir2.yacc -= dy;
-	 cir1.xacc += dx;
-	 cir1.yacc += dy;
+	 cir2.x -= dx * 2;
+	 cir2.y -= dy * 2;
+	 cir1.xacc += dx * 2;
+	 cir1.yacc += dy * 2;
   }
 
   function getDistance(x1,y1,x2,y2){
@@ -221,6 +232,7 @@ function checkBall()
   }
 function play()
 {
+  cancelAnimationFrame(animationID);
   checkPlayers();
   checkBall();
   checkBallBoundaries();
@@ -228,7 +240,7 @@ function play()
   drawField();
   renderPlayers();
   renderBall();
-  requestAnimationFrame(play);
+  animationID = requestAnimationFrame(play);
 }
 document.onkeyup = function(e){
 	if(e.keyCode === 87){
