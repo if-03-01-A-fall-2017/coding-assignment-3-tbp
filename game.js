@@ -1,3 +1,5 @@
+window.onload = function(){}
+
 var canvas = document.getElementById("canvas");
 var c = canvas.getContext("2d");
 var animationID;
@@ -5,7 +7,6 @@ let score1 = 0;
 let score2 = 0;
 const maxPlayerSpeed = 3.5;
 const ballSpeed = 5;
-
 var wDown = false;
 var sDown = false;
 var aDown = false;
@@ -14,18 +15,46 @@ var upDown = false;
 var downDown = false;
 var leftDown = false;
 var rightDown = false;
-
 var player1 = new Player(100,250,30,0,0);
 var player2 = new Player(600,250,30,0,0);
 var ball = new Player(350, 250,10,0,0);
+
+
+
+var person = prompt("Enter your name.");
+while (person.length < 1) {
+  person = prompt("Ungültige Eingabe.");
+}
+
+var person2 = prompt("Enter the second players name.");
+while (person2 === person || person2 === 0 || person2.length < 1) {
+  person2 = prompt("Ungültige Eingabe.");
+}
+
+
 start();
 
 function start(){
+  if (score1 === 3) {
+    score1 = 0;
+    score2 = 0;
+    player1.wins += 1;
+    if (player1.wins === 2) {
+      var k = localStorage;
+      localStorage.setItem(person,)
+    }
+  }
+  else if (score2 === 3) {
+    score1 = 0;
+    score2 = 0;
+    player2.wins += 1;
+  }
   player1.x = 100;
   player1.y = 250;
   player2.x = 600;
   player2.y = 250;
   ball = new Player(350, 250,10,0,0);
+  out.innerHTML = person + "'s Score: " + score1 + "<br>" + person2 + "'s Score: " + score2;
   play();
 }
 function Player(x,y,z,b,c)
@@ -37,6 +66,7 @@ function Player(x,y,z,b,c)
   this.size = z;
   this.yacc = b;
   this.xacc = c;
+  this.wins = 0;
 }
 function checkPlayers()
 {
@@ -240,6 +270,7 @@ function play()
   drawField();
   renderPlayers();
   renderBall();
+
   animationID = requestAnimationFrame(play);
 }
 document.onkeyup = function(e){
