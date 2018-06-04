@@ -20,17 +20,15 @@ var player2 = new Player(600,250,30,0,0);
 var ball = new Player(350, 250,10,0,0);
 
 
-
 var person = prompt("Enter your name.");
-while (person.length < 1) {
+while (person === null || person.length < 1) {
   person = prompt("Ungültige Eingabe.");
 }
 
 var person2 = prompt("Enter the second players name.");
-while (person2 === person || person2 === 0 || person2.length < 1) {
+while (person2 === null || person2 === person || person2 === 0 || person2.length < 1) {
   person2 = prompt("Ungültige Eingabe.");
 }
-
 
 start();
 
@@ -39,15 +37,29 @@ function start(){
     score1 = 0;
     score2 = 0;
     player1.wins += 1;
-    if (player1.wins === 2) {
+    if (player1.wins === 1) {
       var k = localStorage;
-      localStorage.setItem(person,)
+      var value = localStorage.getItem(person);
+      value++;
+      localStorage.setItem(person,value);
+      player1.wins = 0;
+      player2.wins = 0;
+      window.alert(person + " has won!");
     }
   }
   else if (score2 === 3) {
     score1 = 0;
     score2 = 0;
     player2.wins += 1;
+    if (player2.wins === 1) {
+      var k = localStorage;
+      var value = localStorage.getItem(person2);
+      value++;
+      localStorage.setItem(person2,value);
+      player1.wins = 0;
+      player2.wins = 0;
+      out.innerHTML = person2 + " has won!";
+    }
   }
   player1.x = 100;
   player1.y = 250;
@@ -145,6 +157,7 @@ function checkBallBoundaries()
   }
   if (((ball.y + ball.yacc) > 170 && (ball.y - ball.yacc) < 340) && ball.x + ball.xacc >= 689) {
     score1++;
+
     start();
   }
   else if (ball.x + ball.xacc > 689) {
