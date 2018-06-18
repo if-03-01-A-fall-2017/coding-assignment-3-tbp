@@ -19,8 +19,6 @@ var player1 = new Player(100,250,30,0,0);
 var player2 = new Player(600,250,30,0,0);
 var ball = new Player(350, 250,10,0,0);
 
-
-// Useless comment
 var person = prompt("Enter your name.");
 
 while (person === null || person.length < 1) {
@@ -76,6 +74,19 @@ function Player(x,y,z,b,c)
   this.size = z;
   this.yacc = b;
   this.xacc = c;
+}
+function play()
+{
+  cancelAnimationFrame(animationID);
+  checkPlayers();
+  checkBall();
+  checkBallBoundaries();
+  moveBall();
+  drawField();
+  renderPlayers();
+  renderBall();
+
+  animationID = requestAnimationFrame(play);
 }
 function checkPlayers()
 {
@@ -270,19 +281,6 @@ function checkBall()
   function getDistance(x1,y1,x2,y2){
 	 return Math.sqrt(Math.pow(x1-x2,2)+Math.pow(y1-y2,2));
   }
-function play()
-{
-  cancelAnimationFrame(animationID);
-  checkPlayers();
-  checkBall();
-  checkBallBoundaries();
-  moveBall();
-  drawField();
-  renderPlayers();
-  renderBall();
-
-  animationID = requestAnimationFrame(play);
-}
 document.onkeyup = function(e){
 	if(e.keyCode === 87){
 		wDown = false;
