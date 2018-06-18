@@ -20,6 +20,7 @@ var player2 = new Player(600,250,30,0,0);
 var ball = new Player(350, 250,10,0,0);
 
 
+// Useless comment
 var person = prompt("Enter your name.");
 
 while (person === null || person.length < 1) {
