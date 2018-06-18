@@ -1,0 +1,86 @@
+body {
+  margin-top: 30px;
+  margin-left: 30px;
+  background-image: linear-gradient(to right, white 30% ,rgba(225, 77, 77, 1));
+  font-family: monospace;
+}
+
+
+article{
+
+
+}
+
+#wrapper{
+  text-align: center;
+}
+
+div.rainbow{
+  width: 370px;
+  height: auto;
+  background:red;
+  -webkit-animation:rainbow 5s;
+  -moz-animation:rainbow 5s;
+  -o-animation:rainbow 5s;
+  animation:rainbow 5s;
+}
+
+@keyframes rainbow {
+  0% {background:red;}
+  10% {background:yellow;}
+  20% {background:blue;}
+  30% {background:green;}
+  40% {background:pink;}
+  50% {background:red;}
+  75% {background:blue;}
+  100% {background:green;
+}
+/*
+h1 {
+  font-size: 110px;
+  text-align: center;
+  margin-bottom: auto;
+  letter-spacing: 10px;
+
+}
+
+h1, h2{
+  font-family: Impact;
+}
+
+h2{
+  font-size: 70px;
+  color: #AB050A;
+  margin-left: 100px;
+  margin-bottom: 30px;
+}
+strong{
+  margin-left: 100px;
+  font-size: 20px;
+  font-family: Sans-serif;
+  word-wrap: normal;
+}
+
+li{
+  margin-left: 120px;
+  line-height: 20px;
+}
+
+p{
+  margin-left: 100px;
+  word-wrap: normal;
+  line-height: 15px;
+}
+
+p, li{
+  font-size: 17px;
+  font-family: Sans-serif;
+}
+
+img{
+  margin: auto;
+}
+*/
+<p>League of Legends is also the most streamed game in the world. There are Streamers like Pokimane, Tyler1, Yassuo, Impqtype.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hr9YQj8D3ao" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
